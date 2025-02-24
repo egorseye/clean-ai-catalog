@@ -55,13 +55,7 @@ export default function Index() {
 
           {/* Mobile Filters */}
           <Sheet open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <FilterSidebar filters={filters} onChange={setFilters} />
-            </SheetContent>
-          </Sheet>
-
-          <div className="flex-1">
-            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="lg:hidden">
               <div className="flex items-center gap-2">
                 <div className="relative flex-1 sm:w-64">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-catalog-400" />
@@ -73,7 +67,7 @@ export default function Index() {
                     onChange={handleSearch}
                   />
                 </div>
-                <SheetTrigger asChild className="lg:hidden">
+                <SheetTrigger asChild>
                   <Button
                     variant="outline"
                     size="icon"
@@ -83,6 +77,25 @@ export default function Index() {
                     <SlidersHorizontal className="h-4 w-4" />
                   </Button>
                 </SheetTrigger>
+              </div>
+            </div>
+            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+              <FilterSidebar filters={filters} onChange={setFilters} />
+            </SheetContent>
+          </Sheet>
+
+          <div className="flex-1">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              {/* Desktop Search */}
+              <div className="hidden lg:block relative flex-1 sm:w-64">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-catalog-400" />
+                <Input
+                  type="search"
+                  placeholder="Search agents..."
+                  className="w-full pl-9"
+                  value={filters.search}
+                  onChange={handleSearch}
+                />
               </div>
 
               <div className="flex items-center justify-between gap-4">
